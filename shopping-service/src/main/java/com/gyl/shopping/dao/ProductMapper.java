@@ -25,4 +25,10 @@ public interface ProductMapper {
                           @Param("keyword") String keyword,
                           @Param("offset") Integer offset,
                           @Param("pageSize") Integer pageSize);
+
+    int batchUpdate(@Param("list") List<Integer> list, @Param("sellStatus") Integer sellStatus);
+
+    List<Product> selectByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize);
+
+    Integer selectCount();
 }

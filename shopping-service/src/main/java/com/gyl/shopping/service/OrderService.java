@@ -18,4 +18,8 @@ public interface OrderService {
     void createQrcode(String orderNo);
 
     void pay(String orderNo, Integer userId);
+
+    List<OrderVo> listByAdmin(Integer pageNum, Integer pageSize);
+
+    void delivered(String orderNo);
 }

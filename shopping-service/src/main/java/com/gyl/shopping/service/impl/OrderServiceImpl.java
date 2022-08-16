@@ -180,6 +180,59 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderVo> listByAdmin(Integer pageNum, Integer pageSize) {
+        if (pageNum == null || pageNum < 1) {
+            pageNum = 1;
+        }
+        if (pageSize == null || pageSize < 1){
+            pageSize = 10;
+        }
+        Integer offset = (pageNum-1)*pageSize;
+        List<Order> orders = orderMapper.selectByAdminPage(offset, pageSize);
+        List<OrderVo> list = new ArrayList<>();
+        for (Order order : orders) {
+            OrderVo orderVo = new OrderVo();
+            orderVo.setUserId(order.getUserId());
+            orderVo.setTotalPrice(order.getTotalPrice());
+            orderVo.setReceiverName(order.getReceiverName());
+            orderVo.setReceiverMobile(order.getReceiverMobile());
+            orderVo.setReceiverAddress(order.getReceiverAddress());
+            orderVo.setPostage(order.getPostage());
+            orderVo.setPayTime(order.getPayTime());
+            orderVo.setPaymentType(order.getPaymentType());
+            orderVo.setOrderStatusName(OrderStatus.getStatusByCode(order.getOrderStatus()).getDesc());
+            orderVo.setOrderNo(order.getOrderNo());
+            orderVo.setEndTime(order.getEndTime());
+            orderVo.setDeliveryTime(order.getDeliveryTime());
+            orderVo.setCreateTime(order.getCreateTime());
+            orderVo.setOrderItemList(getOrderItemVos(order.getOrderNo()));
+            list.add(orderVo);
+        }
+        return list;
+    }
+
+    @Override
+    public void delivered(String orderNo) {
+        if(StringUtils.isEmpty(orderNo)){
+            throw new MallException(ExceptionEnum.PARAMS_ERROR);
+        }
+
+        Order order = orderMapper.selectByAdmin(orderNo);
+        if (order == null) {
+            throw new MallException(ExceptionEnum.NOT_PRODUCT);
+        }
+
+        order.setOrderStatus(OrderStatus.ORDER_HAS_RECEIVER.getCode());
+        order.setPostage(30);
+        order.setDeliveryTime(new Date());
+        order.setUpdateTime(new Date());
+        int i = orderMapper.updateByPrimaryKey(order);
+        if (i < 1) {
+            throw new MallException(ExceptionEnum.UPDATE_ERROR);
+        }
+    }
+
+    @Override
     public List<OrderVo> list(Integer pageNum, Integer pageSize, Integer userId) {
         if (pageNum == null || pageNum < 1) {
             pageNum = 1;

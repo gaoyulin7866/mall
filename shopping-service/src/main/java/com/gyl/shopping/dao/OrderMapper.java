@@ -22,4 +22,8 @@ public interface OrderMapper {
 
     Order selectByOrderNo(@Param("orderNo") String orderNo, @Param("userId") Integer userId);
     List<Order> selectByPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize , @Param("userId") Integer userId);
+
+    List<Order> selectByAdminPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize);
+
+    Order selectByAdmin(@Param("orderNo") String orderNo);
 }

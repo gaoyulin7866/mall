@@ -22,6 +22,12 @@
     from shopping_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByPage" parameterType="map" resultType="com.gyl.shopping.dto.Product">
+    select * from shopping_product limit #{offset},#{pageSize}
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(*) from shopping_product;
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from shopping_product
     where id = #{id,jdbcType=INTEGER}
@@ -135,6 +141,12 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="batchUpdate" parameterType="map">
+    update shopping_product set `status` = #{sellStatus,jdbcType=INTEGER} where id in
+    <foreach collection="list" separator="," open="(" close=")" item="item" index="index">
+      ${item}
+    </foreach>
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gyl.shopping.dto.Product">
     update shopping_product

@@ -76,4 +76,17 @@ public class OrderController {
         return ResultResponse.success().put("订单完成！");
     }
 
+    @GetMapping("/admin/order/list")
+    public ResultResponse getList(@RequestParam("pageNum") Integer pageNum,
+                                  @RequestParam("pageSize") Integer pageSize){
+        List<OrderVo> list = orderService.listByAdmin(pageNum, pageSize);
+        return ResultResponse.success().put(list);
+    }
+
+    @PostMapping("/admin/order/delivered")
+    public ResultResponse delivered(@RequestParam("orderNo") String orderNo){
+        orderService.delivered(orderNo);
+        return ResultResponse.success().put("发货成功！");
+    }
+
 }

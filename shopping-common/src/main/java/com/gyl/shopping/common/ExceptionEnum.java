@@ -28,7 +28,8 @@ public enum ExceptionEnum {
     PAY_ERROR(10024, "支付失败！"),
     CATEGORY_EXIST(10025, "该分类名已存在！"),
     NEW_ERROR(10026, "新增失败！"),
-    CATEGORY_NOT_EXIST(10027, "分类不存在！");
+    CATEGORY_NOT_EXIST(10027, "分类不存在！"),
+    ADD_PRODUCT_ERROR(10028, "商品添加失败！");
 
     private Integer code;
     private String message;

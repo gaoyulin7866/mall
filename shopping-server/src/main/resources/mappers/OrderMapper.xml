@@ -216,4 +216,10 @@
   <select id="selectByPage" parameterType="map" resultType="com.gyl.shopping.dto.Order">
     select * from shopping_order where user_id = #{userId} limit #{offset}, #{pageSize}
   </select>
+  <select id="selectByAdminPage" parameterType="map" resultType="com.gyl.shopping.dto.Order">
+    select * from shopping_order limit #{offset}, #{pageSize}
+  </select>
+  <select id="selectByAdmin" parameterType="java.lang.String" resultType="com.gyl.shopping.dto.Order">
+    select * from shopping_order where order_no = #{orderNo}
+  </select>
 </mapper>
