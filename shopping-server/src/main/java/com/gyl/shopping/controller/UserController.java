@@ -152,7 +152,7 @@ public class UserController {
     public ResultResponse login(
             @RequestParam("userName") String userName,
             @RequestParam("password") String password,
-            HttpSession session) {
+            HttpSession session) throws Exception {
         if (StringUtils.isEmpty(userName)){
             throw new MallException(ExceptionEnum.USERNAME_NOT_NULL);
         }
@@ -167,13 +167,14 @@ public class UserController {
             throw new MallException(ExceptionEnum.PASSWORD_ERROR);
         }
         session.setAttribute("user", user);
-        return ResultResponse.success().put("登陆成功！");
+        String s = TokenUtil.generateToken(user.getId(), userName, user.getRole(), user.getEmailAddress());
+        return ResultResponse.success().put(s);
     }
 
     @PostMapping("/admin/login")
     public ResultResponse adminLogin(@RequestParam("userName") String userName,
                                      @RequestParam("password") String password,
-                                     HttpSession session){
+                                     HttpSession session) throws Exception {
         if (StringUtils.isEmpty(userName)){
             throw new MallException(ExceptionEnum.USERNAME_NOT_NULL);
         }
@@ -188,12 +189,13 @@ public class UserController {
             throw new MallException(ExceptionEnum.PASSWORD_ERROR);
         }
         session.setAttribute("user", user);
-        return ResultResponse.success().put("管理员登陆成功");
+        String s = TokenUtil.generateToken(user.getId(), userName, user.getRole(), user.getEmailAddress());
+        return ResultResponse.success().put(s);
     }
 
     @PostMapping("/user/update")
     public ResultResponse updateUser(@RequestParam("signature") String signature){
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         userService.updateSignature(signature, user.getId());
         return ResultResponse.success().put("更新成功!");
     }

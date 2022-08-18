@@ -27,7 +27,7 @@ public class OrderController {
                                       @RequestParam("receiverMobile") Integer receiverMobile,
                                       @RequestParam("receiverAddress") String receiverAddress){
 
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         orderService.create(receiverName,receiverMobile,receiverAddress, user.getId());
         return ResultResponse.success().put("订单创建成功！");
     }
@@ -35,7 +35,7 @@ public class OrderController {
     @GetMapping("/order/detail")
     public ResultResponse detail(@RequestParam("orderNo") String orderNo){
 
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         OrderVo orderVo = orderService.detail(orderNo, user.getId());
         return ResultResponse.success().put(orderVo);
     }
@@ -44,7 +44,7 @@ public class OrderController {
     public ResultResponse list(@RequestParam("pageNum") Integer pageNum,
                                @RequestParam("pageSize") Integer pageSize){
 
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         List<OrderVo> list = orderService.list(pageNum, pageSize, user.getId());
         return ResultResponse.success().put(list);
     }
@@ -54,7 +54,7 @@ public class OrderController {
         if (StringUtils.isEmpty(orderNo)){
             throw new MallException(ExceptionEnum.PARAMS_ERROR);
         }
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         orderService.cancelOrder(orderNo, user.getId());
         return ResultResponse.success().put("取消成功!");
     }
@@ -71,7 +71,7 @@ public class OrderController {
             throw new MallException(ExceptionEnum.PARAMS_ERROR);
         }
 
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         orderService.finishOrder(orderNo, user.getId());
         return ResultResponse.success().put("订单完成！");
     }

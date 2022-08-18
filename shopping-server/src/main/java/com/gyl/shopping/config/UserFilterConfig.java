@@ -19,6 +19,10 @@ public class UserFilterConfig {
         filterRegistrationBean.setFilter(getUserFilter());
         filterRegistrationBean.addUrlPatterns("/user/*");
         filterRegistrationBean.addUrlPatterns("/cart/*");
+        filterRegistrationBean.addUrlPatterns("/category/*");
+        filterRegistrationBean.addUrlPatterns("/order/*");
+        filterRegistrationBean.addUrlPatterns("/product/*");
+
         filterRegistrationBean.setName("userFilterConf");
         return filterRegistrationBean;
     }

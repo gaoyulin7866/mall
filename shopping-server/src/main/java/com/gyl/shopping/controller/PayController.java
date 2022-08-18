@@ -25,7 +25,7 @@ public class PayController {
             throw new MallException(ExceptionEnum.PARAMS_ERROR);
         }
 
-        User user = UserFilter.currentUserId.get();
+        User user = UserFilter.currentUser.get();
         orderService.pay(orderNo, user.getId());
         return ResultResponse.success();
     }

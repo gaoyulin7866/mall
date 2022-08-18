@@ -29,7 +29,9 @@ public enum ExceptionEnum {
     CATEGORY_EXIST(10025, "该分类名已存在！"),
     NEW_ERROR(10026, "新增失败！"),
     CATEGORY_NOT_EXIST(10027, "分类不存在！"),
-    ADD_PRODUCT_ERROR(10028, "商品添加失败！");
+    ADD_PRODUCT_ERROR(10028, "商品添加失败！"),
+    TOKEN_ERROR(10029, "Token过期！"),
+    LOGOUT(10030, "已退出登陆！");
 
     private Integer code;
     private String message;
