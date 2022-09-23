@@ -1,5 +1,6 @@
 package com.gyl.shopping.controller;
 
+import com.gyl.order.api.OrderDubboService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.ResultResponse;
@@ -7,6 +8,7 @@ import com.gyl.shopping.dto.User;
 import com.gyl.shopping.filter.UserFilter;
 import com.gyl.shopping.service.OrderService;
 import com.gyl.shopping.vo.OrderVo;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,9 @@ public class OrderController {
 
     @Resource
     private OrderService orderService;
+
+    @Reference(version = "${demo.service.version}", group = "${demo.service.group}")
+    private OrderDubboService orderServiceDubbo;
 
     @PostMapping("/order/create ")
     public ResultResponse createOrder(@RequestParam("receiverName") String receiverName,
@@ -55,7 +60,7 @@ public class OrderController {
             throw new MallException(ExceptionEnum.PARAMS_ERROR);
         }
         User user = UserFilter.currentUser.get();
-        orderService.cancelOrder(orderNo, user.getId());
+        orderServiceDubbo.cancelOrder(orderNo, user.getId());
         return ResultResponse.success().put("取消成功!");
     }
 

@@ -1,6 +1,7 @@
 package com.gyl.shopping;
 
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 
+@EnableDubboConfig
 @EnableAutoConfiguration
 @ServletComponentScan
 @ComponentScan(basePackages = {"com.gyl.shopping"})

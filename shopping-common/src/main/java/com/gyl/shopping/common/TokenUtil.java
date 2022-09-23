@@ -11,7 +11,7 @@ import java.util.Date;
 public class TokenUtil {
     public static String generateToken (Integer userId, String username, Integer role, String emailAddress) throws Exception {
         Algorithm algorithm = Algorithm.RSA256(RSAUtil.getPublicKey(), RSAUtil.getPrivateKey());
-        OffsetDateTime offsetDateTime = OffsetDateTime.now().plusMinutes(1);
+        OffsetDateTime offsetDateTime = OffsetDateTime.now().plusMinutes(10);
 
         return JWT.create()
                 .withKeyId(String.valueOf(userId))
