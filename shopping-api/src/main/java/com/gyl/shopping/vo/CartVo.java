@@ -3,9 +3,11 @@ package com.gyl.shopping.vo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
-public class CartVo {
+public class CartVo implements Serializable {
     private Integer id;
 
     private Integer productId;

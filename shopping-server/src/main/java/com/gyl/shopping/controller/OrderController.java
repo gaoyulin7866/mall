@@ -1,7 +1,6 @@
 package com.gyl.shopping.controller;
 
 import com.gyl.order.api.OrderDubboService;
-import com.gyl.shopping.api.OrderService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.ResultResponse;
@@ -14,26 +13,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class OrderController {
 
-    @Resource
-    private OrderService orderService;
-
     @Reference(version = "${demo.service.version}", group = "${demo.service.group}")
     private OrderDubboService orderServiceDubbo;
 
-    @PostMapping("/order/create ")
+    @PostMapping("/order/create")
     public ResultResponse createOrder(@RequestParam("receiverName") String receiverName,
-                                      @RequestParam("receiverMobile") Integer receiverMobile,
+                                      @RequestParam("receiverMobile") String receiverMobile,
                                       @RequestParam("receiverAddress") String receiverAddress){
 
         User user = UserFilter.currentUser.get();
-        orderService.create(receiverName,receiverMobile,receiverAddress, user.getId());
+        orderServiceDubbo.create(receiverName,receiverMobile,receiverAddress, user.getId());
         return ResultResponse.success().put("订单创建成功！");
     }
 
@@ -41,7 +35,7 @@ public class OrderController {
     public ResultResponse detail(@RequestParam("orderNo") String orderNo){
 
         User user = UserFilter.currentUser.get();
-        OrderVo orderVo = orderService.detail(orderNo, user.getId());
+        OrderVo orderVo = orderServiceDubbo.detail(orderNo, user.getId());
         return ResultResponse.success().put(orderVo);
     }
 
@@ -50,7 +44,7 @@ public class OrderController {
                                @RequestParam("pageSize") Integer pageSize){
 
         User user = UserFilter.currentUser.get();
-        List<OrderVo> list = orderService.list(pageNum, pageSize, user.getId());
+        List<OrderVo> list = orderServiceDubbo.list(pageNum, pageSize, user.getId());
         return ResultResponse.success().put(list);
     }
 
@@ -66,7 +60,7 @@ public class OrderController {
 
     @PostMapping("/order/qrcode")
     public ResultResponse orderQr(@RequestParam("orderNo") String orderNo){
-        orderService.createQrcode(orderNo);
+        orderServiceDubbo.createQrcode(orderNo);
         return ResultResponse.success();
     }
 
@@ -77,20 +71,20 @@ public class OrderController {
         }
 
         User user = UserFilter.currentUser.get();
-        orderService.finishOrder(orderNo, user.getId());
+        orderServiceDubbo.finishOrder(orderNo, user.getId());
         return ResultResponse.success().put("订单完成！");
     }
 
     @GetMapping("/admin/order/list")
     public ResultResponse getList(@RequestParam("pageNum") Integer pageNum,
                                   @RequestParam("pageSize") Integer pageSize){
-        List<OrderVo> list = orderService.listByAdmin(pageNum, pageSize);
+        List<OrderVo> list = orderServiceDubbo.listByAdmin(pageNum, pageSize);
         return ResultResponse.success().put(list);
     }
 
     @PostMapping("/admin/order/delivered")
     public ResultResponse delivered(@RequestParam("orderNo") String orderNo){
-        orderService.delivered(orderNo);
+        orderServiceDubbo.delivered(orderNo);
         return ResultResponse.success().put("发货成功！");
     }
 

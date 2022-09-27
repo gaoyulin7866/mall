@@ -5,6 +5,7 @@ import com.gyl.shopping.common.*;
 import com.gyl.shopping.dto.User;
 import com.gyl.shopping.filter.UserFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.util.StringUtils;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpSession;
 @RestController
 //@RequestMapping("/user")
 public class UserController {
+
+    @Value("${redis.password}")
+    private String redisPassword;
 
     @Autowired
     private JedisPool jedisPool;
@@ -47,6 +51,7 @@ public class UserController {
         try {
             code = EmailUtils.generateCode();
             Jedis jedis = jedisPool.getResource();
+            jedis.auth(redisPassword);
             jedis.select(0);
             jedis.set(userName, code);
             jedis.expire(userName, 300);
@@ -89,6 +94,7 @@ public class UserController {
         String code = "";
         try {
             Jedis jedis = jedisPool.getResource();
+            jedis.auth(redisPassword);
             jedis.select(0);
             code = jedis.get(userName);
         } catch (Exception e) {
@@ -131,6 +137,7 @@ public class UserController {
         String code = "";
         try {
             Jedis jedis = jedisPool.getResource();
+            jedis.auth(redisPassword);
             jedis.select(0);
             code = jedis.get(userName);
         } catch (Exception e) {

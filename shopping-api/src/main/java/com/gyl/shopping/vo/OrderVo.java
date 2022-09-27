@@ -3,13 +3,14 @@ package com.gyl.shopping.vo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
 @Data
 @NoArgsConstructor
-public class OrderVo {
+public class OrderVo implements Serializable {
     private String orderNo;
 
     private Integer userId;
