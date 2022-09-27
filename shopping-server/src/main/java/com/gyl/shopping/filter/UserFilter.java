@@ -5,13 +5,10 @@ import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.TokenUtil;
 import com.gyl.shopping.dao.UserMapper;
 import com.gyl.shopping.dto.User;
-import com.gyl.shopping.service.UserService;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class UserFilter implements Filter {

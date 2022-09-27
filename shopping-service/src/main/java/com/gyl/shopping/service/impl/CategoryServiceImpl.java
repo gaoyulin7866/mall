@@ -1,10 +1,10 @@
 package com.gyl.shopping.service.impl;
 
+import com.gyl.shopping.api.CategoryService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.dao.CategoryMapper;
 import com.gyl.shopping.dto.Category;
-import com.gyl.shopping.service.CategoryService;
 import com.gyl.shopping.vo.CategoryTileVo;
 import com.gyl.shopping.vo.CategoryVo;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
 package com.gyl.shopping.service.impl;
 
 import com.google.zxing.WriterException;
+import com.gyl.shopping.api.OrderService;
 import com.gyl.shopping.common.*;
 import com.gyl.shopping.dao.CartMapper;
 import com.gyl.shopping.dao.OrderItemMapper;
@@ -10,7 +11,6 @@ import com.gyl.shopping.dto.Cart;
 import com.gyl.shopping.dto.Order;
 import com.gyl.shopping.dto.OrderItem;
 import com.gyl.shopping.dto.Product;
-import com.gyl.shopping.service.OrderService;
 import com.gyl.shopping.vo.OrderItemVo;
 import com.gyl.shopping.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

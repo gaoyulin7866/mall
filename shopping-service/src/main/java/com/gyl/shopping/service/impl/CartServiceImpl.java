@@ -1,5 +1,6 @@
 package com.gyl.shopping.service.impl;
 
+import com.gyl.shopping.api.CartService;
 import com.gyl.shopping.common.Constants;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
@@ -7,7 +8,6 @@ import com.gyl.shopping.dao.CartMapper;
 import com.gyl.shopping.dao.ProductMapper;
 import com.gyl.shopping.dto.Cart;
 import com.gyl.shopping.dto.Product;
-import com.gyl.shopping.service.CartService;
 import com.gyl.shopping.vo.CartVo;
 import org.springframework.stereotype.Service;
 

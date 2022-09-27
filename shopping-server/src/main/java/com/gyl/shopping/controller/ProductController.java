@@ -1,10 +1,10 @@
 package com.gyl.shopping.controller;
 
+import com.gyl.shopping.api.ProductService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.ResultResponse;
 import com.gyl.shopping.dto.Product;
-import com.gyl.shopping.service.ProductService;
 import com.gyl.shopping.vo.ProductVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

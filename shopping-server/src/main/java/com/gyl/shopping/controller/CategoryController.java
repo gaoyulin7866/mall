@@ -1,20 +1,15 @@
 package com.gyl.shopping.controller;
 
+import com.gyl.shopping.api.CategoryService;
 import com.gyl.shopping.common.ResultResponse;
-import com.gyl.shopping.dto.Category;
-import com.gyl.shopping.dto.Product;
-import com.gyl.shopping.service.CategoryService;
 import com.gyl.shopping.vo.CategoryTileVo;
 import com.gyl.shopping.vo.CategoryVo;
-import com.gyl.shopping.vo.ProductVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

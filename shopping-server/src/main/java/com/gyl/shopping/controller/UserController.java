@@ -1,9 +1,9 @@
 package com.gyl.shopping.controller;
 
+import com.gyl.shopping.api.UserService;
 import com.gyl.shopping.common.*;
 import com.gyl.shopping.dto.User;
 import com.gyl.shopping.filter.UserFilter;
-import com.gyl.shopping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

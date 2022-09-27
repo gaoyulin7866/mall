@@ -1,8 +1,7 @@
-package com.gyl.shopping.service;
+package com.gyl.shopping.api;
 
 import com.gyl.shopping.dto.Product;
 import com.gyl.shopping.vo.ProductVo;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

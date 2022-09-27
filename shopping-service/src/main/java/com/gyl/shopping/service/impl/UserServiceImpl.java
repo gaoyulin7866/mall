@@ -1,11 +1,11 @@
 package com.gyl.shopping.service.impl;
 
+import com.gyl.shopping.api.UserService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.Md5Utils;
 import com.gyl.shopping.dao.UserMapper;
 import com.gyl.shopping.dto.User;
-import com.gyl.shopping.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

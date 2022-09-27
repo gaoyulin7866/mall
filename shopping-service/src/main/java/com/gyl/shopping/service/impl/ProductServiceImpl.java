@@ -1,11 +1,11 @@
 package com.gyl.shopping.service.impl;
 
+import com.gyl.shopping.api.ProductService;
 import com.gyl.shopping.common.Constants;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.dao.ProductMapper;
 import com.gyl.shopping.dto.Product;
-import com.gyl.shopping.service.ProductService;
 import com.gyl.shopping.vo.ProductVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

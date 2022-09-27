@@ -1,4 +1,4 @@
-package com.gyl.shopping.service;
+package com.gyl.shopping.api;
 
 import com.gyl.shopping.vo.CategoryTileVo;
 import com.gyl.shopping.vo.CategoryVo;

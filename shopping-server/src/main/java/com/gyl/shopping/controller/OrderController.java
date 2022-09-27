@@ -1,12 +1,12 @@
 package com.gyl.shopping.controller;
 
 import com.gyl.order.api.OrderDubboService;
+import com.gyl.shopping.api.OrderService;
 import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.ResultResponse;
 import com.gyl.shopping.dto.User;
 import com.gyl.shopping.filter.UserFilter;
-import com.gyl.shopping.service.OrderService;
 import com.gyl.shopping.vo.OrderVo;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.util.StringUtils;
