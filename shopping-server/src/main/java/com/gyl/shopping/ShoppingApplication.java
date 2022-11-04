@@ -21,9 +21,9 @@ public class ShoppingApplication {
 
         try {
             SpringApplication.run(ShoppingApplication.class, args);
-            log.info("========================程序启动成功========================");
+            log.info("========================服务启动成功========================");
         } catch (Exception e) {
-            log.error("========================程序启动失败========================");
+            log.error("========================服务启动失败========================");
             e.printStackTrace();
             System.exit(-1);
         }
