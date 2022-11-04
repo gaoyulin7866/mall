@@ -9,6 +9,10 @@ import com.google.zxing.common.BitMatrix;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @Author: gyl
+ * @Description: 生成支付二维码
+ */
 public class QrcodeUtil {
     public static final Integer width = 300;
     public static final Integer height = 300;

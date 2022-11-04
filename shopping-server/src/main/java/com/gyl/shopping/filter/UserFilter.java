@@ -11,6 +11,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @Author: gyl
+ * @Description: userFilter存储用户信息
+ */
 public class UserFilter implements Filter {
     public static final ThreadLocal<User> currentUser = new ThreadLocal<>();
 

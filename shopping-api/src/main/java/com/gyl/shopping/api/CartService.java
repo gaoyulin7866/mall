@@ -4,6 +4,10 @@ import com.gyl.shopping.vo.CartVo;
 
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 购物车
+ */
 public interface CartService {
     List<CartVo> getList(Integer userId);
 

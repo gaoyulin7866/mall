@@ -4,7 +4,10 @@ import com.gyl.shopping.filter.UserFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+/**
+ * @Author: gyl
+ * @Description: userFilter 提供用户信息
+ */
 @Configuration
 public class UserFilterConfig {
 

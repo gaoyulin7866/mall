@@ -4,6 +4,10 @@ import com.gyl.shopping.vo.OrderVo;
 
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 订单
+ */
 public interface OrderService {
     void create(String receiverName, Integer receiverMobile, String receiverAddress, Integer userId);
 

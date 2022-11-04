@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 购物车相关
+ */
 @Service
 public class CartServiceImpl implements CartService {
 

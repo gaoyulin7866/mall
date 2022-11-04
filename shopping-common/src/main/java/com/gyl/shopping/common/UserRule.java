@@ -1,5 +1,9 @@
 package com.gyl.shopping.common;
 
+/**
+ * @Author: gyl
+ * @Description: 用户角色
+ */
 public enum UserRule {
     NORMAL(1,"普通用户"),
     ADMIN(2,"管理员");

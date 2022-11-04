@@ -8,6 +8,10 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import java.time.OffsetDateTime;
 import java.util.Date;
 
+/**
+ * @Author: gyl
+ * @Description: 生成token
+ */
 public class TokenUtil {
     public static String generateToken (Integer userId, String username, Integer role, String emailAddress) throws Exception {
         Algorithm algorithm = Algorithm.RSA256(RSAUtil.getPublicKey(), RSAUtil.getPrivateKey());

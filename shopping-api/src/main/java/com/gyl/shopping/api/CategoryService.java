@@ -5,6 +5,10 @@ import com.gyl.shopping.vo.CategoryVo;
 
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 商品分类
+ */
 public interface CategoryService {
     public List<CategoryVo> getList();
 

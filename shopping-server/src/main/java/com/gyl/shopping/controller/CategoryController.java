@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+/**
+ * @Author: gyl
+ * @Description: 商品分类
+ */
 @RestController
 public class CategoryController {
 

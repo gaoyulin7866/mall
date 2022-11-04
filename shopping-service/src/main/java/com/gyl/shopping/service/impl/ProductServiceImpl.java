@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @Author: gyl
+ * @Description: 商品相关
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
 

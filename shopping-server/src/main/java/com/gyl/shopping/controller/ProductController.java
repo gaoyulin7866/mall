@@ -15,6 +15,10 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 商品
+ */
 @RestController
 public class ProductController {
 

@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 
+/**
+ * @Author: gyl
+ * @Description: 用户相关
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @Author: gyl
+ * @Description: 商品分类相关
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Resource

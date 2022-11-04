@@ -1,7 +1,10 @@
 package com.gyl.shopping.common;
 
 import lombok.Data;
-
+/**
+ * @Author: gyl
+ * @Description: 订单状态
+ */
 public enum OrderStatus {
 
     ORDER_CANCEL(1,"已取消"),

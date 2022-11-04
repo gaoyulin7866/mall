@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
+/**
+ * @Author: gyl
+ * @Description: redis配置
+ */
 @Configuration
 public class JedisConfig {
 

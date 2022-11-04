@@ -5,6 +5,10 @@ import com.gyl.shopping.vo.ProductVo;
 
 import java.util.List;
 
+/**
+ * @Author: gyl
+ * @Description: 商品
+ */
 public interface ProductService {
     public List<Product> getList(String orderBy, Integer categoryId, String keyword, Integer pageNum, Integer pageSize);
 
