@@ -46,6 +46,15 @@
        - UserRule
  - shopping-server
    - pom.xml
+   - resources
+     - config
+       - local.properties // 本地启动服务配置 暂未上传
+       - online.properties// 阿里云启动服务配置 暂未上传
+     - mappers
+       - ...
+     - application.properties // 暂未上传
+     - generatorConfig.xml // 生成mappers等配置 暂未上传
+     - shopping.sql        // 初始化sql表
    - com.gyl.shopping
      - config
        - JedisConfig
