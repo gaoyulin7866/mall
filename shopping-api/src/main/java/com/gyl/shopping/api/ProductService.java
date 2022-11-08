@@ -1,6 +1,7 @@
 package com.gyl.shopping.api;
 
 import com.gyl.shopping.dto.Product;
+import com.gyl.shopping.dto.User;
 import com.gyl.shopping.vo.ProductVo;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface ProductService {
     void deleteByAdmin(Integer id);
 
     void batchUpdateStatus(String ids, Integer sellStatus);
+
+    void batchAddProductByAdmin(List<Product> productList, User user);
 
     ProductVo selectByPage(Integer pageNum, Integer pageSize);
 }

@@ -148,6 +148,16 @@
       ${item}
     </foreach>
   </update>
+  <insert id="batchInsert" parameterType="map">
+    insert into shopping_product (`name`, image,
+    detail, category_id, price,
+    stock, `status`, create_time,
+    update_time)
+    values
+    <foreach collection="list" separator="," index="index" item="item">
+      (#{item.name}, #{item.image}, #{item.detail}, #{item.categoryId}, #{item.price}, #{item.stock}, #{item.status}, #{item.createTime}, #{item.updateTime})
+    </foreach>
+  </insert>
   <update id="updateByPrimaryKey" parameterType="com.gyl.shopping.dto.Product">
     update shopping_product
     set `name` = #{name,jdbcType=VARCHAR},

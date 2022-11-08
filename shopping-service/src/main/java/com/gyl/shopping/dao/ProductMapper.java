@@ -28,6 +28,8 @@ public interface ProductMapper {
 
     int batchUpdate(@Param("list") List<Integer> list, @Param("sellStatus") Integer sellStatus);
 
+    int batchInsert(@Param("list") List<Product> list);
+
     List<Product> selectByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize);
 
     Integer selectCount();

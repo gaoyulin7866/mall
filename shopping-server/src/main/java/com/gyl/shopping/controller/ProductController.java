@@ -5,11 +5,11 @@ import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.common.ResultResponse;
 import com.gyl.shopping.dto.Product;
+import com.gyl.shopping.dto.User;
+import com.gyl.shopping.filter.UserFilter;
 import com.gyl.shopping.vo.ProductVo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -56,6 +56,16 @@ public class ProductController {
 
         return ResultResponse.success().put("新增成功！");
 
+    }
+
+    @PostMapping("/admin/product/batchAdd")
+    public ResultResponse batchAddProductByAdmin(@RequestBody List<Product> productList){
+        if (CollectionUtils.isEmpty(productList)) {
+            return ResultResponse.fail().put("请求参数错误！");
+        }
+        User user = UserFilter.currentUser.get();
+        productService.batchAddProductByAdmin(productList,user);
+        return ResultResponse.success().put("批量新增成功！");
     }
 
     @PostMapping("/admin/upload/file")

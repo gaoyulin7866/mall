@@ -6,7 +6,9 @@ import com.gyl.shopping.common.ExceptionEnum;
 import com.gyl.shopping.common.MallException;
 import com.gyl.shopping.dao.ProductMapper;
 import com.gyl.shopping.dto.Product;
+import com.gyl.shopping.dto.User;
 import com.gyl.shopping.vo.ProductVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -15,12 +17,15 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
  * @Author: gyl
  * @Description: 商品相关
  */
+@Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -120,6 +125,35 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void batchAddProductByAdmin(List<Product> productList, User user) {
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        for (Product product : productList) {
+            if(product.getCategoryId() == null){
+                product.setCategoryId(1);
+            }
+            if(StringUtils.isEmpty(product.getImage())){
+                product.setImage("暂无");
+            }
+            product.setCreateTime(new Date());
+            product.setStatus(Constants.ON_DOWN);
+            product.setUpdateTime(new Date());
+            try {
+                executorService.execute(new ProductTask(productMapper,product));
+            } catch (Exception e) {
+                if(!executorService.isShutdown()){
+                    executorService.shutdown();
+                }
+                e.printStackTrace();
+                throw new MallException(ExceptionEnum.ADD_PRODUCT_ERROR);
+            }
+        }
+        if(!executorService.isShutdown()){
+            executorService.shutdown();
+        }
+    }
+
     @Override
     public ProductVo selectByPage(Integer pageNum, Integer pageSize) {
         if (pageNum == null || pageNum < 1){
@@ -150,6 +184,25 @@ public class ProductServiceImpl implements ProductService {
         int i = productMapper.updateByPrimaryKey(product);
         if (i < 1) {
             throw new MallException(ExceptionEnum.UPDATE_ERROR);
+        }
+    }
+}
+
+class ProductTask implements Runnable {
+    private final Product product;
+
+    private final ProductMapper productMapper;
+
+    public ProductTask(ProductMapper productMapper, Product product){
+        this.product = product;
+        this.productMapper = productMapper;
+    }
+
+    @Override
+    public void run() {
+        int insert = productMapper.insert(product);
+        if (insert < 1) {
+            throw new MallException(ExceptionEnum.ADD_PRODUCT_ERROR);
         }
     }
 }
