@@ -67,6 +67,7 @@
      - config
        - JedisConfig
        - UserFilterConfig // 配置userFilter
+       - ThreadPoolConfig // 初始化线程池
      - controller
        - OrderController  // 调用mall-order的dubbo服务
        - ...

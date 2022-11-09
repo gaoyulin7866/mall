@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PayController {
 
-    @Reference(version = "${demo.service.version}", group = "${demo.service.group}")
+    @Reference(version = "${demo.service.version}", group = "${demo.service.group}", check = false)
     private OrderDubboService orderDubboService;
 
     @GetMapping("/pay")

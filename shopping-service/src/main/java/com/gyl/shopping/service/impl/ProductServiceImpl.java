@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +30,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ProductMapper productMapper;
+
+    @Resource
+    private ExecutorService executorService;
 
     @Override
     public List<Product> getList(String orderBy, Integer categoryId, String keyword, Integer pageNum, Integer pageSize) {
@@ -128,7 +130,6 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void batchAddProductByAdmin(List<Product> productList, User user) {
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (Product product : productList) {
             if(product.getCategoryId() == null){
                 product.setCategoryId(1);
@@ -142,15 +143,9 @@ public class ProductServiceImpl implements ProductService {
             try {
                 executorService.execute(new ProductTask(productMapper,product));
             } catch (Exception e) {
-                if(!executorService.isShutdown()){
-                    executorService.shutdown();
-                }
                 e.printStackTrace();
                 throw new MallException(ExceptionEnum.ADD_PRODUCT_ERROR);
             }
-        }
-        if(!executorService.isShutdown()){
-            executorService.shutdown();
         }
     }
 
